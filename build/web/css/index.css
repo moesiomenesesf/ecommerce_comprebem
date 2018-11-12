@@ -1,0 +1,46 @@
+/* 
+    Created on : 23/09/2018, 10:12:45
+    Author     : leoomoreira
+*/
+#mensagem {
+    font-weight: bold;
+    color: #ff0000;
+}
+
+html{
+    background-color: #eee;
+}
+
+.menu li, .menu{
+    display: inline-block;
+    vertical-align: middle;
+}
+.container{
+    position:relative;
+    margin: 0 auto;
+    width: 70%;
+}
+.menu{
+    position: absolute;
+    top: 1em;
+    right: 3em;
+}
+
+li{
+    margin-left: 2em;
+}
+.loginSair{
+    margin-left: 10em;
+}
+
+.poster{
+    text-decoration: none;
+}
+
+.poster ul li{
+    display: inline-block;
+}
+
+.poster ul li ul li{
+    display: block;
+}

@@ -1,0 +1,72 @@
+/* 
+    Created on : 23/09/2018, 10:18:05
+    Author     : leoomoreira
+*/
+body {
+    font-family: Arial, Helvetica, sans-serif;
+    padding: 0px;
+    margin: 0px;
+    color: darkblue;
+}
+#logo {
+    padding: 15px 0px 15px 0px;
+    background-color: lavender;
+    font-size: 24px;
+}
+#logo-conteudo {
+    text-align: left;
+    width: 700px;
+}
+#menu {
+    padding: 15px 0px 15px 0px;
+    background-color: darkblue;
+    color: #ffffff;
+}
+#menu-conteudo {
+    text-align: left;
+    width: 700px;
+}
+#menu-conteudo div a {
+    color: #ffffff;
+}
+.div-table { display:table; width: auto; }
+.div-table-row{display:table-row; width: auto; }
+.div-table-col{ border: 1px solid #484848; display:table-cell; padding: 5px; width: 33%; text-align: center; }
+#mensagem {
+    margin: 15px;
+    padding: 15px;
+    border: 1px solid #ff0000;
+    width: 700px;
+    font-weight: bold;
+    color: #ff0000;
+}
+#conteudo {
+    width: 700px;
+    text-align: left;
+    min-height: 500px;
+    padding: 15px;
+}
+#conteudo table {
+    width: 100%;
+    border: 1px solid darkblue;
+}
+#conteudo table tr th.controles {
+    width: 100px;
+}
+#titulo {
+    font-size: 20px;
+    font-weight: bold;
+    padding-bottom: 15px;
+}
+.rotulo {
+    width: 150px;
+}
+.valor {
+
+}
+#rodape {
+    background-color: lavender;
+    text-align: center;
+    font-weight: bold;
+    padding: 15px;
+}
