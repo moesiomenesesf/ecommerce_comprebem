@@ -81,6 +81,7 @@
                <div>
                <%
                    List<Produto> produtos = (List<Produto>) request.getAttribute("produtos");
+                   if(produtos != null){
                    for (Produto p : produtos) {
                %>
                <div>
@@ -93,7 +94,7 @@
                    </form>
                </div>
                <%
-                   }
+                   }}
                %>
            </div>
            <%
