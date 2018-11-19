@@ -12,6 +12,7 @@ import java.sql.Connection;
 import java.sql.DriverManager;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
+import java.sql.Statement;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -21,13 +22,34 @@ import java.util.List;
  */
 public class CarrinhoComprasDAO {
 
-    public boolean inserirVenda(String login) {
+    public int obterId() {
+        int id = 0;
+        try {
+            Class.forName("org.postgresql.Driver");
+            Connection connection = DriverManager.getConnection(JDBC_URL, JDBC_USUARIO, JDBC_SENHA);
+            PreparedStatement preparedStatement = connection.prepareCall("SELECT nextval('venda_id_seq') AS id");
+            ResultSet resultSet = preparedStatement.executeQuery();
+            while (resultSet.next()) {
+                id = resultSet.getInt("id");
+            }
+            resultSet.close();
+            preparedStatement.close();
+            connection.close();
+        } catch (Exception ex) {
+            return id;
+        }
+
+        return id;
+    }
+
+    public boolean inserirVenda(int id, String login) {
         boolean resultado = false;
         try {
             Class.forName("org.postgresql.Driver");
             Connection connection = DriverManager.getConnection(JDBC_URL, JDBC_USUARIO, JDBC_SENHA);
-            PreparedStatement preparedStatement = connection.prepareStatement("INSERT INTO vendas (usuario_login) VALUES (?)");
-            preparedStatement.setString(1, login);
+            PreparedStatement preparedStatement = connection.prepareStatement("INSERT INTO vendas (id, usuario_login) VALUES (?, ?)");
+            preparedStatement.setInt(1, id);
+            preparedStatement.setString(2, login);
             resultado = (preparedStatement.executeUpdate() > 0);
             preparedStatement.close();
             connection.close();
@@ -42,7 +64,7 @@ public class CarrinhoComprasDAO {
         try {
             Class.forName("org.postgresql.Driver");
             Connection connection = DriverManager.getConnection(JDBC_URL, JDBC_USUARIO, JDBC_SENHA);
-            PreparedStatement preparedStatement = connection.prepareStatement("INSERT INTO venda_produto (venda_id, produto_id, qtd) VALUES (?,?,?)");
+            PreparedStatement preparedStatement = connection.prepareStatement("INSERT INTO venda_produto (venda_id, produto_id, quantidade) VALUES (?,?,?)");
             preparedStatement.setInt(1, idVenda);
             preparedStatement.setInt(2, idProduto);
             preparedStatement.setInt(3, qtd);
@@ -50,7 +72,31 @@ public class CarrinhoComprasDAO {
             preparedStatement.close();
             connection.close();
         } catch (Exception ex) {
+            ex.printStackTrace();
             return false;
+        }
+        return resultado;
+    }
+
+    public List<VendaProduto> obterTodos() {
+        List<VendaProduto> resultado = new ArrayList<VendaProduto>();
+        try {
+            Class.forName("org.postgresql.Driver");
+            Connection connection = DriverManager.getConnection(JDBC_URL, JDBC_USUARIO, JDBC_SENHA);
+            Statement statement = connection.createStatement();
+            ResultSet resultSet = statement.executeQuery("SELECT venda_id, produto_id, quantidade FROM venda_produto");
+            while (resultSet.next()) {
+                VendaProduto vendaProduto = new VendaProduto();
+                vendaProduto.setIdVenda(Integer.parseInt(resultSet.getString("venda_id")));
+                vendaProduto.setIdProduto(Integer.parseInt(resultSet.getString("produto_id")));
+                vendaProduto.setQtd(Integer.parseInt(resultSet.getString("quantidade")));
+                resultado.add(vendaProduto);
+            }
+            resultSet.close();
+            statement.close();
+            connection.close();
+        } catch (Exception ex) {
+            return new ArrayList<VendaProduto>();
         }
         return resultado;
     }
@@ -112,7 +158,7 @@ public class CarrinhoComprasDAO {
             resultado = (preparedStatement.executeUpdate() > 0);
             preparedStatement.close();
             connection.close();
-            
+
         } catch (Exception ex) {
             return false;
         }

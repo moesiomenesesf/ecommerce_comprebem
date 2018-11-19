@@ -126,7 +126,11 @@
     </servlet>
     <servlet>
         <servlet-name>ComprasServlet</servlet-name>
-        <servlet-class>controle.carrinhocompras.ComprasServlet</servlet-class>
+        <servlet-class>controle.carrinhocompras.FinalizarComprasServlet</servlet-class>
+    </servlet>
+    <servlet>
+        <servlet-name>ListarVendasServlet</servlet-name>
+        <servlet-class>controle.carrinhocompras.ListarVendasServlet</servlet-class>
     </servlet>
     <servlet-mapping>
         <servlet-name>LoginServlet</servlet-name>
@@ -255,6 +259,10 @@
     <servlet-mapping>
         <servlet-name>ComprasServlet</servlet-name>
         <url-pattern>/ComprasServlet</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>ListarVendasServlet</servlet-name>
+        <url-pattern>/ListarVendasServlet</url-pattern>
     </servlet-mapping>
     <session-config>
         <session-timeout>

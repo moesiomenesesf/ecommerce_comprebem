@@ -53,7 +53,7 @@ public class VerUsuarioServlet extends HttpServlet {
                 rd.forward(request, response);
             } else { // caso o login não exista na sessão ou não é um login válido no sistema
                 request.setAttribute("mensagem", "Você não possui um login válido");
-                RequestDispatcher rd = request.getRequestDispatcher("/index.jsp");
+                RequestDispatcher rd = request.getRequestDispatcher("InicioServlet");
                 rd.forward(request, response);
             }
         }else{
@@ -65,7 +65,7 @@ public class VerUsuarioServlet extends HttpServlet {
                 rd.forward(request, response);
             } else { // caso o login não exista na sessão ou não é um login válido no sistema
                 request.setAttribute("mensagem", "Você não possui um login válido");
-                RequestDispatcher rd = request.getRequestDispatcher("/index.jsp");
+                RequestDispatcher rd = request.getRequestDispatcher("InicioServlet");
                 rd.forward(request, response);
             }
         }

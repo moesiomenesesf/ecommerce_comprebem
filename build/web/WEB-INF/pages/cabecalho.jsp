@@ -35,6 +35,7 @@
                         <div class="div-table-col"><a href="ListarCategoriaServlet">Cadastro de Categorias</a></div>
                         <div class="div-table-col"><a href="ListarProdutoServlet">Cadastro de Produtos</a></div>
                         <div class="div-table-col"><a href="ListarFuncionarioServlet">Cadastro de Funcionários</a></div>
+                        <div class="div-table-col"><a href="ListarVendasServlet">Vendas</a></div>
                         <div class="div-table-col"><a href="LogoutServlet">Sair</a></div>
                     </div>
                 </div>

@@ -42,7 +42,7 @@ public class IncluirUsuarioServlet extends HttpServlet {
         // saída
         if (sucessoInserir) {
             request.setAttribute("mensagem", "Usuário inserido com sucesso");
-            RequestDispatcher rd = request.getRequestDispatcher("index.jsp");
+            RequestDispatcher rd = request.getRequestDispatcher("InicioServlet");
             rd.forward(request, response);
         } else {
             request.setAttribute("mensagem", "Não foi possível inserir este usuário");

@@ -15,18 +15,25 @@
         <meta charset="UTF-8">
         <meta name="viewport" content="width=device-width, initial-scale=1.0">
         <link href="css/index.css" rel="stylesheet" type="text/css" />
+        <link href="css/bootstrap.css" rel="stylesheet" type="text/css" />
     </head>
-    <body class="container">
+    <body class="container  ">
         <header>
-            <img src ="img/logo.png"/>
-            <ul class="menu">
-                <a href="#carrinho"><li>Carrinho</li></a>
-                <% if(true){%>
-                  <li class="loginSair">Login</li>
-                <% }else{ %>
-                  <li class="loginSair">Sair</li>
-                <% } %>
-            </ul>
+            <div class="row">
+                <div class="col-6">
+                    <img src ="img/logo.png"/>
+                </div>
+                <div class="col-6">
+                    <ul class="menu">
+                    <a href="#carrinho"><li>Carrinho</li></a>
+                    <% if(true){%>
+                      <li class="loginSair">Login</li>
+                    <% }else{ %>
+                      <li class="loginSair">Sair</li>
+                    <% } %>
+                    </ul>
+                </div>
+                
             
         </header>
         <%  String login = (String) session.getAttribute("login");
@@ -127,9 +134,13 @@
            <%
                }
            %>
-           <form action="ComprarServlet">
+           <% if (session.getAttribute("login") != null) { %>
+           <form action="ComprasServlet">
             <input type="submit" value="Comprar"/>
            </form>
+           <% } else { %>
+           <div>Você precisa se identificar para realizar a compra</div>
+           <% } %>
         </div>
     </body>
 </html>
