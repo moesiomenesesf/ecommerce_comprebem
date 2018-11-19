@@ -70,11 +70,11 @@ public class LoginServlet extends HttpServlet {
                 HttpSession session = request.getSession(true); // cria e referencia a sessão do usuário
                 session.setAttribute("login", login); // coloca o atributo login na sessão do usuário
                 request.setAttribute("mensagem", "Seja bem vindo!");
-                RequestDispatcher rd = request.getRequestDispatcher("index.jsp"); // despacha a requisição para a página main.jsp, encaminhando as instância de request e response
+                RequestDispatcher rd = request.getRequestDispatcher("InicioServlet"); // despacha a requisição para a página main.jsp, encaminhando as instância de request e response
                 rd.forward(request, response);
             }else {
                 request.setAttribute("mensagem", "Login ou senha incorreta"); // coloca uma mensagem no objeto request
-                RequestDispatcher rd = request.getRequestDispatcher("index.jsp"); // despacha a requisição para a página index.jsp, encaminhando as instância de request e response
+                RequestDispatcher rd = request.getRequestDispatcher("InicioServlet"); // despacha a requisição para a página index.jsp, encaminhando as instância de request e response
                 rd.forward(request, response);
             }
         }

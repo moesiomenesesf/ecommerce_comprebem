@@ -127,6 +127,9 @@
            <%
                }
            %>
+           <form action="ComprarServlet">
+            <input type="submit" value="Comprar"/>
+           </form>
         </div>
     </body>
 </html>

@@ -124,6 +124,10 @@
         <servlet-name>RemoverCarrinhoComprasServlet</servlet-name>
         <servlet-class>controle.carrinhocompras.RemoverCarrinhoComprasServlet</servlet-class>
     </servlet>
+    <servlet>
+        <servlet-name>ComprasServlet</servlet-name>
+        <servlet-class>controle.carrinhocompras.ComprasServlet</servlet-class>
+    </servlet>
     <servlet-mapping>
         <servlet-name>LoginServlet</servlet-name>
         <url-pattern>/LoginServlet</url-pattern>
@@ -247,6 +251,10 @@
     <servlet-mapping>
         <servlet-name>RemoverCarrinhoComprasServlet</servlet-name>
         <url-pattern>/RemoverCarrinhoComprasServlet</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>ComprasServlet</servlet-name>
+        <url-pattern>/ComprasServlet</url-pattern>
     </servlet-mapping>
     <session-config>
         <session-timeout>
