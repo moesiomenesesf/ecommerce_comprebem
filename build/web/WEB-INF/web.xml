@@ -132,6 +132,14 @@
         <servlet-name>ListarVendasServlet</servlet-name>
         <servlet-class>controle.carrinhocompras.ListarVendasServlet</servlet-class>
     </servlet>
+    <servlet>
+        <servlet-name>ListarComprasServlet</servlet-name>
+        <servlet-class>controle.usuario.ListarComprasServlet</servlet-class>
+    </servlet>
+    <servlet>
+        <servlet-name>ExcluirVendaServlet</servlet-name>
+        <servlet-class>controle.carrinhocompras.ExcluirVendaServlet</servlet-class>
+    </servlet>
     <servlet-mapping>
         <servlet-name>LoginServlet</servlet-name>
         <url-pattern>/LoginServlet</url-pattern>
@@ -263,6 +271,14 @@
     <servlet-mapping>
         <servlet-name>ListarVendasServlet</servlet-name>
         <url-pattern>/ListarVendasServlet</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>ListarComprasServlet</servlet-name>
+        <url-pattern>/ListarComprasServlet</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>ExcluirVendaServlet</servlet-name>
+        <url-pattern>/ExcluirVendaServlet</url-pattern>
     </servlet-mapping>
     <session-config>
         <session-timeout>

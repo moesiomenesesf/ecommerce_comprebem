@@ -6,30 +6,33 @@
 package controle.carrinhocompras;
 
 import java.io.IOException;
-import java.util.List;
+import java.io.PrintWriter;
 import javax.servlet.RequestDispatcher;
 import javax.servlet.ServletException;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import modelo.carrinhocompras.CarrinhoComprasDAO;
-import modelo.carrinhocompras.Venda;
 
 /**
  *
- * @author aluno
+ * @author Programador
  */
-public class ListarVendasServlet extends HttpServlet {
+public class ExcluirVendaServlet extends HttpServlet {
 
-    protected void service(HttpServletRequest request, HttpServletResponse response)
+  protected void service(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
-       
+        // entrada
+        int id = Integer.parseInt(request.getParameter("id"));
+        // processamento
         CarrinhoComprasDAO carrinho = new CarrinhoComprasDAO();
-        List<Venda> resultado = carrinho.obterTodasVendas();
-        System.out.println(resultado);
-        request.setAttribute("resultado", resultado);
-        RequestDispatcher rd = request.getRequestDispatcher("WEB-INF/pages/vendas/listar.jsp");
+        boolean sucessoExcluir = carrinho.excluir(id);
+        if (sucessoExcluir) {
+            request.setAttribute("mensagem", "Venda excluída com sucesso");
+        } else {
+            request.setAttribute("mensagem", "Não foi possível excluir esta venda");
+        }
+        RequestDispatcher rd = request.getRequestDispatcher("ListarVendasServlet");
         rd.forward(request, response);
-       
-   }
+    }
 }

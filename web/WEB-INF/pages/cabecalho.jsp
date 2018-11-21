@@ -17,13 +17,14 @@
 <html>
     <head>
         <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
-        <title>SMD e-commerce</title>
+        <title>Compre Bem</title>
         <link href="css/principal.css" rel="stylesheet" type="text/css" />
+        <link href="css/bootstrap.css" rel="stylesheet" type="text/css" />
     </head>
     <body>
         <div id="logo">
             <center>
-                <div id="logo-conteudo">SMD e-commerce</div>
+                <div id="logo-conteudo">Compre Bem (Área Administrativa)</div>
             </center>
         </div>
         <div id="menu">

@@ -1,26 +1,25 @@
 <%@page import="java.util.List"%>
-<%@page import="modelo.carrinhocompras.VendaProduto"%>
-<%@page import="modelo.produto.ProdutoNegocio"%>
+<%@page import="modelo.carrinhocompras.Venda"%>
+<%@page import="modelo.usuario.UsuarioNegocio"%>
 <%@include file="../cabecalho.jsp" %>
 <div id="titulo">Vendas</div>
-<% List<VendaProduto> resultado = (List<VendaProduto>) request.getAttribute("resultado"); %>
+<% List<Venda> resultado = (List<Venda>) request.getAttribute("resultado"); %>
 <% if (resultado != null && resultado.size() > 0) { %>
 <table>
     <tr>
         <th>IdVenda</th>
-        <th>Produto</th>
-        <th>Quantidade</th>
-        <th class="controles"></th>
+        <th>Usuario</th>
     </tr>
-    <%  ProdutoNegocio prod;
-        for (VendaProduto item : resultado) {
-            prod = new ProdutoNegocio();
+    <%
+        
+        for (Venda item : resultado) {
+            
     %>
     <tr>
-        <td><%= item.getIdVenda()%></td>
-        <td><%= prod.obterProduto(item.getIdProduto()).getDescricao()%></td>
-        <td><%= item.getQtd() %></td>
-        <!--<td><a href="ExcluirVendaServlet?=<%=// item.getLogin()%>">Excluir</a></td>         TODO        -->
+        <td><%= item.getId() %></td>
+        <td><%= item.getLogin() %></td>
+         <td><a href="ExcluirVendaServlet?id=<%= item.getId()%>">Excluir</a></td>
+         
     </tr>
     <% } %>
 </table>

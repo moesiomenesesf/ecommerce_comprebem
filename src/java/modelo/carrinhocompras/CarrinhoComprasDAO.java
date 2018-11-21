@@ -100,7 +100,32 @@ public class CarrinhoComprasDAO {
         }
         return resultado;
     }
-
+    public List<Venda> obterTodasVendas() {
+        List<Venda> resultado = new ArrayList<Venda>();
+        try {
+            Class.forName("org.postgresql.Driver");
+            Connection connection = DriverManager.getConnection(JDBC_URL, JDBC_USUARIO, JDBC_SENHA);
+            Statement statement = connection.createStatement();
+            ResultSet resultSet = statement.executeQuery("SELECT id, usuario_login FROM vendas");
+            while (resultSet.next()) {
+                Venda venda = new Venda();
+                venda.setId(Integer.parseInt(resultSet.getString("id")));
+                venda.setLogin(resultSet.getString("usuario_login"));
+                
+                
+                
+                venda.setProdutos(obterVendaProduto(venda.getId()));
+                resultado.add(venda);
+            }
+            resultSet.close();
+            statement.close();
+            connection.close();
+        } catch (Exception ex) {
+            return new ArrayList<Venda>();
+        }
+        return resultado;
+    }
+    
     public Venda obterVenda(int id) {
         Venda venda = new Venda();
         try {
@@ -123,7 +148,30 @@ public class CarrinhoComprasDAO {
         }
         return venda;
     }
-
+       public List<VendaProduto> comprasUsuario(String login) {
+        List<VendaProduto> resultado = new ArrayList<VendaProduto>();
+        try {
+            Class.forName("org.postgresql.Driver");
+            Connection connection = DriverManager.getConnection(JDBC_URL, JDBC_USUARIO, JDBC_SENHA);
+            PreparedStatement preparedStatement = connection.prepareCall("SELECT venda_id, produto_id, quantidade FROM venda_produto, vendas WHERE venda_id = id and usuario_login = ?");
+            preparedStatement.setString(1, login);
+            ResultSet resultSet = preparedStatement.executeQuery();
+            while (resultSet.next()) {
+                VendaProduto vendaProduto = new VendaProduto();
+                vendaProduto.setIdVenda(resultSet.getInt("venda_id"));
+                vendaProduto.setIdProduto(resultSet.getInt("produto_id"));
+                vendaProduto.setQtd(resultSet.getInt("quantidade"));
+                resultado.add(vendaProduto);
+            }
+            resultSet.close();
+            preparedStatement.close();
+            connection.close();
+        } catch (Exception ex) {
+            return new ArrayList<VendaProduto>();
+        }
+        return resultado;
+    }
+    
     public List<VendaProduto> obterVendaProduto(int idVenda) {
         List<VendaProduto> resultado = new ArrayList<VendaProduto>();
         try {
@@ -150,11 +198,13 @@ public class CarrinhoComprasDAO {
 
     public boolean excluir(int id) {
         boolean resultado = false;
+        System.out.println("\nAAAAAAAAAAAAAAAAA");
         try {
             Class.forName("org.postgresql.Driver");
             Connection connection = DriverManager.getConnection(JDBC_URL, JDBC_USUARIO, JDBC_SENHA);
-            PreparedStatement preparedStatement = connection.prepareStatement("DELETE FROM venda WHERE id = ?");
+            PreparedStatement preparedStatement = connection.prepareStatement("DELETE FROM vendas WHERE id = ?");
             preparedStatement.setInt(1, id);
+            System.out.println(id+"\nAAAAAAAAAAAAAAAAA");
             resultado = (preparedStatement.executeUpdate() > 0);
             preparedStatement.close();
             connection.close();

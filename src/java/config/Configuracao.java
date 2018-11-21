@@ -14,9 +14,9 @@ package config;
 public final class Configuracao {
         
 
-    public static final String JDBC_URL = "jdbc:postgresql://localhost:5432/web";
+    public static final String JDBC_URL = "jdbc:postgresql://localhost:5432/web2";
     public static final String JDBC_USUARIO = "postgres";
-    public static final String JDBC_SENHA = "ufc123";
+    public static final String JDBC_SENHA = "afxv27w8";
 
     private Configuracao() {
         
